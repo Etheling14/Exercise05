@@ -52,8 +52,16 @@ void ShowResults(string name, decimal minimumSalary, decimal salary)
     Console.ReadKey();
 }
 
-decimal CalculateSalary(double numberHours, decimal hourlyCost)
+ decimal CalculateSalary(double numberHours, decimal hourlyCost)
 {
-    return (decimal)numberHours * hourlyCost;
+    if (numberHours > 160)
+    {
+        double salaryExtra = (numberHours - 160 * ((double)hourlyCost * 1.25));
+        return (decimal)salaryExtra + ((decimal)numberHours * hourlyCost);
+    }
+    else
+    {
+        return (decimal)numberHours * hourlyCost;
+    }
 }
 
