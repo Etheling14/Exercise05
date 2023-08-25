@@ -19,7 +19,7 @@ do
     Console.WriteLine("-------------------------------------------------------------------------------");
     Console.ForegroundColor = ConsoleColor.White;
     RequestData(out name, out hourlyCost, out numberHours);
-    salary = CalculateSalary(numberHours, hourlyCost);
+    salary = (decimal) CalculateSalary(numberHours, hourlyCost);
     ShowResults(name, minimumSalary, salary);
     Console.ForegroundColor = ConsoleColor.Magenta;
     Console.WriteLine("-------------------------------------------------------------------------------");
@@ -60,11 +60,18 @@ void ShowResults(string name, decimal minimumSalary, decimal salary)
         double salaryExtra = (Extrahours * ((double)hourlyCost * 1.25));
         double SalaryNormal = (numberHours - Extrahours) * (double)hourlyCost;
         double SalaryTotal = salaryExtra + SalaryNormal;
+        if (SalaryTotal <= 1000000) return SalaryTotal * (double) 0.97M;
+        if (SalaryTotal <= 2000000) return SalaryTotal * (double) 0.95M;
+        if (SalaryTotal <= 3000000) return SalaryTotal * (double) 0.92M;
         return SalaryTotal;
     }
     else
     {
-        return numberHours * (double)hourlyCost;
+        double SalaryTotal=  numberHours * (double)hourlyCost;
+        if (SalaryTotal <= 1000000) return SalaryTotal * (double)0.97M;
+        if (SalaryTotal <= 2000000) return SalaryTotal * (double)0.95M;
+        if (SalaryTotal <= 3000000) return SalaryTotal * (double)0.92M;
+        return SalaryTotal;
     }
 }
 
