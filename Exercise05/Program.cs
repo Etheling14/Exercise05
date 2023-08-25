@@ -49,19 +49,23 @@ void ShowResults(string name, decimal minimumSalary, decimal salary)
         Console.WriteLine($"Salary.........................: {minimumSalary:C2}");
     }
     Console.WriteLine("Press enter to calculate another salary or Ctrl + C to finish.");
-    Console.ReadKey();
+    Console.ReadKey();  
 }
 
- decimal CalculateSalary(double numberHours, decimal hourlyCost)
+ double CalculateSalary(double numberHours, decimal hourlyCost)
 {
     if (numberHours > 160)
     {
-        double salaryExtra = (numberHours - 160 * ((double)hourlyCost * 1.25));
-        return (decimal)salaryExtra + ((decimal)numberHours * hourlyCost);
+        double Extrahours = numberHours - 160;
+        double salaryExtra = (Extrahours * ((double)hourlyCost * 1.25));
+        double SalaryNormal = (numberHours - Extrahours) * (double)hourlyCost;
+        double SalaryTotal = salaryExtra + SalaryNormal;
+        return SalaryTotal;
     }
     else
     {
-        return (decimal)numberHours * hourlyCost;
+        return numberHours * (double)hourlyCost;
     }
 }
 
+   
